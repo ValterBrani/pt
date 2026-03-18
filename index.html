@@ -268,13 +268,33 @@ function renderTimer(){
     </div>`;
 }
 
+/* ─── WAKE LOCK ─── */
+let wakeLock=null;
+async function requestWakeLock(){
+  try{
+    if('wakeLock' in navigator){
+      wakeLock=await navigator.wakeLock.request('screen');
+    }
+  }catch(e){}
+}
+function releaseWakeLock(){
+  if(wakeLock){wakeLock.release();wakeLock=null;}
+}
+document.addEventListener('visibilitychange',async()=>{
+  if(document.visibilityState==='visible'&&timerRunning)await requestWakeLock();
+});
+
 function toggleTimer(){
   if(!currentEx)return;
   if(phase==='done'){resetTimer();return;}
-  if(timerRunning){timerRunning=false;clearInterval(timerInterval);}
-  else{
+  if(timerRunning){
+    timerRunning=false;
+    clearInterval(timerInterval);
+    releaseWakeLock();
+  }else{
     timerRunning=true;
     try{getCtx();}catch(e){}
+    requestWakeLock();
     if(phase==='idle')startPhase('rep');
     timerInterval=setInterval(tick,1000);
   }
@@ -312,6 +332,7 @@ function advancePhase(){
 
 function endExercise(){
   phase='done';timerRunning=false;clearInterval(timerInterval);
+  releaseWakeLock();
   playBeep('finished');saveSession();renderTimer();
 }
 
