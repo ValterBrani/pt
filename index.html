@@ -190,8 +190,15 @@ function toggleSound(){
   soundEnabled=!soundEnabled;
   localStorage.setItem('physio_sound',soundEnabled?'on':'off');
   const btn=document.getElementById('soundToggle');
-  if(soundEnabled){btn.textContent='🔔 Son';btn.classList.add('on');try{getCtx();}catch(e){}playBeep('start');}
-  else{btn.textContent='🔕 Muet';btn.classList.remove('on');}
+  if(soundEnabled){
+    btn.textContent='🔔 Son';btn.classList.add('on');
+    try{
+      const ctx=getCtx();
+      ctx.resume().then(()=>playBeep('start'));
+    }catch(e){}
+  }else{
+    btn.textContent='🔕 Muet';btn.classList.remove('on');
+  }
 }
 
 function showTab(tab){
