@@ -88,7 +88,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Di
 <div class="header">
   <div>
     <h1>Physio Timer</h1>
-    <div class="subtitle">Dérangement L4-5 · 17 mars 2026</div>
+    <div class="subtitle">Dérangement L4-5 · 1er avril 2026</div>
   </div>
   <button class="sound-toggle on" id="soundToggle" onclick="toggleSound()">🔔 Son</button>
 </div>
@@ -107,34 +107,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Di
 <script>
 const EXERCISES = [
   {
-    id:'abduction', icon:'🍑', name:'Abduction hanche contre mur',
-    series:2, reps:15, holdSec:7, repSec:3, restRep:3, restSerie:20,
-    meta:'2 séries · 15 reps · tenir 7 sec',
-    muscles:'Moyen fessier, petit fessier',
-    desc:"Sur le côté, dos contre le mur, jambe supérieure étirée, orteils vers l'avant, talon sur le mur. Soulever en glissant le talon. Bassin droit, jambe ne pivote pas."
-  },
-  {
-    id:'clamshell', icon:'🦀', name:'Clamshell avec élastique',
-    series:3, reps:12, holdSec:0, repSec:3, restRep:2, restSerie:15,
-    meta:'3 séries · 12 reps',
-    muscles:'Moyen fessier, rotateurs externes de hanche',
-    desc:"Sur le côté, élastique au-dessus des genoux, cuisses en ligne avec le tronc, genoux à 90°. Pieds collés, soulever le genou supérieur sans bouger le bassin."
-  },
-  {
-    id:'transverse', icon:'🎯', name:'Transverse, extension alternée',
-    series:3, reps:8, holdSec:0, repSec:4, restRep:3, restSerie:15,
-    meta:'3 séries · 8 reps/côté',
-    muscles:'Transverse abdomen, plancher pelvien, multifides',
-    desc:"Couché sur le dos, genoux fléchis, dos neutre. Engager plancher pelvien et transverse. Extension d'une jambe sans que le talon touche le sol, dos à plat."
-  },
-  {
-    id:'unipodal', icon:'🦵', name:'Debout sur une jambe',
-    series:2, reps:8, holdSec:30, repSec:3, restRep:5, restSerie:20,
-    meta:'2 séries · 8/jambe · tenir 30 sec',
-    muscles:'Moyen fessier, quadriceps, stabilisateurs cheville',
-    desc:"Debout, pieds rapprochés, mains sur les hanches. Transférer le poids sur une jambe, plier l'autre à 90°. Bassin immobile, genou d'appui stable."
-  },
-  {
     id:'psoas', icon:'🧘', name:'Étirement fléchisseurs hanche',
     series:1, reps:3, holdSec:15, repSec:3, restRep:5, restSerie:0,
     meta:'3 reps · tenir 15 sec',
@@ -146,7 +118,35 @@ const EXERCISES = [
     series:1, reps:10, holdSec:0, repSec:4, restRep:3, restSerie:0,
     meta:'10 reps · aux 2-3h toute la journée',
     muscles:'Érecteurs du rachis, multifides',
-    desc:"Sur le ventre, mains à hauteur du visage. Soulève graduellement tête puis tronc en poussant avec les bras, fesses relâchées, bassin au sol."
+    desc:"Sur le ventre, mains à hauteur du visage. Soulève graduellement tête puis tronc en poussant avec les bras, fesses relâchées, bassin au sol. Étire jusqu'au début de l'inconfort."
+  },
+  {
+    id:'marche', icon:'🪜', name:'Montée de marche',
+    series:3, reps:10, holdSec:0, repSec:3, restRep:3, restSerie:20,
+    meta:'2-3 séries · 10/jambe · 3 sec montée',
+    muscles:'Quadriceps, fessiers, stabilisateurs genou',
+    desc:"Jambe impliquée sur la marche, déplacer le poids sur le genou. Monter doucement en gardant la rotule en ligne avec le 2e orteil et au niveau du bassin. Redescendre en se guidant avec la jambe non impliquée."
+  },
+  {
+    id:'pont', icon:'🌉', name:'Pont 2 jambes — extension genou alterné',
+    series:3, reps:10, holdSec:0, repSec:3, restRep:3, restSerie:15,
+    meta:'3 séries · 10/jambe · 1x/jour',
+    muscles:'Fessiers, ischio-jambiers, transverse abdomen',
+    desc:"Couché sur le dos, soulever les hanches pour que cuisses et tronc soient en ligne. Étendre un genou à la fois en alternance. 3 dernières reps avec bras croisés."
+  },
+  {
+    id:'pontlateral', icon:'🏋️', name:'Pont latéral + abduction hanche',
+    series:3, reps:1, holdSec:30, repSec:3, restRep:5, restSerie:20,
+    meta:'3 séries · tenir 30 sec',
+    muscles:'Moyen fessier, obliques, stabilisateurs épaule',
+    desc:"Sur le côté, genoux à 90°, coude sous l'épaule. Lever le bassin du sol et étendre la jambe du dessus. Lever la jambe aussi haut que possible. Maintenir la position."
+  },
+  {
+    id:'ballon', icon:'🏐', name:'Ischio-jambiers sur ballon',
+    series:3, reps:15, holdSec:0, repSec:6, restRep:4, restSerie:20,
+    meta:'3 séries · 15 reps · 3 sec aller / 3 sec retour · 2x/jour',
+    muscles:'Ischio-jambiers, fessiers, stabilisateurs lombaires',
+    desc:"Couché sur le dos, chevilles sur le ballon. Soulever le bassin — cuisses et tronc en ligne. Rouler le ballon vers les fesses en fléchissant les genoux (3 sec), puis revenir (3 sec). Pour progresser : soulever les coudes du sol."
   },
 ];
 
