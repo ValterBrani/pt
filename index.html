@@ -324,7 +324,11 @@ function startPhase(p){
 function tick(){
   totalSec++;phaseTime--;
   if(phaseTime<=0)advancePhase();
-  else{if(phaseTime<=3)playBeep('countdown');renderTimer();}
+  else{
+    if(phase==='rep')playBeep('countdown');
+    else if(phaseTime<=3)playBeep('countdown');
+    renderTimer();
+  }
 }
 
 function advancePhase(){
