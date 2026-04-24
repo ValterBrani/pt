@@ -143,8 +143,8 @@ const EXERCISES = [
   },
   {
     id:'ballon', icon:'🏐', name:'Ischio-jambiers sur ballon',
-    series:3, reps:15, holdSec:0, repSec:6, restRep:4, restSerie:20,
-    meta:'3 séries · 15 reps · 3 sec aller / 3 sec retour · 2x/jour',
+    series:3, reps:15, holdSec:3, repSec:3, restRep:0, restSerie:20,
+    meta:'3 séries · 15 reps · 3 sec fléchir / 3 sec étendre · 2x/jour',
     muscles:'Ischio-jambiers, fessiers, stabilisateurs lombaires',
     desc:"Couché sur le dos, chevilles sur le ballon. Soulever le bassin — cuisses et tronc en ligne. Rouler le ballon vers les fesses en fléchissant les genoux (3 sec), puis revenir (3 sec). Pour progresser : soulever les coudes du sol."
   },
@@ -235,7 +235,7 @@ function renderTimer(){
   const wrap=document.getElementById('timerWrap');
   if(!currentEx){wrap.innerHTML=`<div class="no-ex"><div class="big">⏱️</div>Sélectionne un exercice<br>dans l'onglet Exercices</div>`;return;}
   const ex=currentEx;
-  const phaseNames={idle:'Prêt',rep:'Mouvement',hold:'Tenir','rest-rep':'Pause','rest-serie':'Repos série',done:'Terminé'};
+  const phaseNames={idle:'Prêt',rep: ex.id==='ballon'?'Fléchir 🦵':' Mouvement',hold: ex.id==='ballon'?'Étendre 🦵':'Tenir','rest-rep':'Pause','rest-serie':'Repos série',done:'Terminé'};
   const pillClass={idle:'pill-idle',rep:'pill-rep',hold:'pill-hold','rest-rep':'pill-rest','rest-serie':'pill-rest',done:'pill-done'};
   const totalPhases=ex.series*ex.reps;
   const donePhases=(currentSerie-1)*ex.reps+(currentRep-1);
