@@ -289,7 +289,10 @@ function releaseWakeLock(){
   if(wakeLock){wakeLock.release();wakeLock=null;}
 }
 document.addEventListener('visibilitychange',async()=>{
-  if(document.visibilityState==='visible'&&timerRunning)await requestWakeLock();
+  if(document.visibilityState==='visible'){
+    if(timerRunning)await requestWakeLock();
+    if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();
+  }
 });
 
 function toggleTimer(){
