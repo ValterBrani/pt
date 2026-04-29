@@ -88,7 +88,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Di
 <div class="header">
   <div>
     <h1>Physio Timer</h1>
-    <div class="subtitle">Dérangement L4-5 · 1er avril 2026</div>
+    <div class="subtitle">Dérangement L4-5 · 29 avril 2026</div>
   </div>
   <button class="sound-toggle on" id="soundToggle" onclick="toggleSound()">🔔 Son</button>
 </div>
@@ -121,32 +121,39 @@ const EXERCISES = [
     desc:"Sur le ventre, mains à hauteur du visage. Soulève graduellement tête puis tronc en poussant avec les bras, fesses relâchées, bassin au sol. Étire jusqu'au début de l'inconfort."
   },
   {
-    id:'marche', icon:'🪜', name:'Montée de marche',
-    series:3, reps:10, holdSec:0, repSec:3, restRep:3, restSerie:20,
-    meta:'2-3 séries · 10/jambe · 3 sec montée',
+    id:'pont1', icon:'🌉', name:'Pont 1 jambe bras croisés',
+    series:2, reps:10, holdSec:0, repSec:3, restRep:3, restSerie:20,
+    meta:'2 séries · 10/jambe · bras croisés',
+    muscles:'Fessiers, ischio-jambiers, stabilisateurs lombaires',
+    desc:"Sur le dos, bras croisés, genoux fléchis. Appui sur un seul pied, soulever le bassin en maintenant les cuisses parallèles. Répéter de l'autre côté."
+  },
+  {
+    id:'descente', icon:'🪜', name:'Descente latérale de marche',
+    series:3, reps:15, holdSec:0, repSec:4, restRep:3, restSerie:20,
+    meta:'2-3 séries · 15 reps · descendre plus bas',
     muscles:'Quadriceps, fessiers, stabilisateurs genou',
-    desc:"Jambe impliquée sur la marche, déplacer le poids sur le genou. Monter doucement en gardant la rotule en ligne avec le 2e orteil et au niveau du bassin. Redescendre en se guidant avec la jambe non impliquée."
+    desc:"Jambe à renforcer sur la marche près du bord. Fléchir le genou pour descendre le pied libre vers le sol sans y mettre de poids — soulever les orteils au sol. Rotule alignée 2e orteil, talon ne décolle pas."
   },
   {
-    id:'pont', icon:'🌉', name:'Pont 2 jambes — extension genou alterné',
-    series:3, reps:10, holdSec:0, repSec:3, restRep:3, restSerie:15,
-    meta:'3 séries · 10/jambe · 1x/jour',
-    muscles:'Fessiers, ischio-jambiers, transverse abdomen',
-    desc:"Couché sur le dos, soulever les hanches pour que cuisses et tronc soient en ligne. Étendre un genou à la fois en alternance. 3 dernières reps avec bras croisés."
+    id:'planche', icon:'🧱', name:'Planche frontale + extension hanche',
+    series:3, reps:6, holdSec:5, repSec:3, restRep:3, restSerie:20,
+    meta:'2-3 séries · 30 sec · tenir 5 sec par jambe',
+    muscles:'Transverse, érecteurs, fessiers, stabilisateurs épaule',
+    desc:"En position de planche frontale sur les avant-bras. Soulever une jambe vers le haut sans mouvement du tronc, tenir 5 sec. Alterner les deux jambes."
   },
   {
-    id:'pontlateral', icon:'🏋️', name:'Pont latéral + abduction hanche',
+    id:'planchelat', icon:'🏋️', name:'Planche latérale',
     series:3, reps:1, holdSec:30, repSec:3, restRep:5, restSerie:20,
-    meta:'3 séries · tenir 30 sec',
-    muscles:'Moyen fessier, obliques, stabilisateurs épaule',
-    desc:"Sur le côté, genoux à 90°, coude sous l'épaule. Lever le bassin du sol et étendre la jambe du dessus. Lever la jambe aussi haut que possible. Maintenir la position."
+    meta:'3 séries · tenir 30 sec · chaque côté',
+    muscles:'Obliques, moyen fessier, carré des lombes',
+    desc:"Sur le côté, jambes étendues alignées, coude sous l'épaule. Lever le bassin et maintenir le corps bien droit. Répéter de l'autre côté."
   },
   {
-    id:'ballon', icon:'🏐', name:'Ischio-jambiers sur ballon',
-    series:3, reps:15, holdSec:3, repSec:3, restRep:0, restSerie:20,
-    meta:'3 séries · 15 reps · 3 sec fléchir / 3 sec étendre · 2x/jour',
+    id:'ballon', icon:'🏐', name:'Ischio-jambiers excentrique',
+    series:3, reps:15, holdSec:0, repSec:4, restRep:3, restSerie:20,
+    meta:'3 séries · 15 reps · 1 jambe · excentrique',
     muscles:'Ischio-jambiers, fessiers, stabilisateurs lombaires',
-    desc:"Couché sur le dos, chevilles sur le ballon. Soulever le bassin — cuisses et tronc en ligne. Rouler le ballon vers les fesses en fléchissant les genoux (3 sec), puis revenir (3 sec). Pour progresser : soulever les coudes du sol."
+    desc:"Sur le dos, talons sur le ballon. Rouler vers les fesses sans résistance. Lever le bassin puis soulever la jambe saine. Étendre le genou de la jambe atteinte pour ramener le ballon lentement."
   },
 ];
 
@@ -235,7 +242,28 @@ function renderTimer(){
   const wrap=document.getElementById('timerWrap');
   if(!currentEx){wrap.innerHTML=`<div class="no-ex"><div class="big">⏱️</div>Sélectionne un exercice<br>dans l'onglet Exercices</div>`;return;}
   const ex=currentEx;
-  const phaseNames={idle:'Prêt',rep: ex.id==='ballon'?'Fléchir 🦵':' Mouvement',hold: ex.id==='ballon'?'Étendre 🦵':'Tenir','rest-rep':'Pause','rest-serie':'Repos série',done:'Terminé'};
+  const repLabel = {
+    psoas:      'Descendre en fente',
+    cobra:      'Monter ↑',
+    pont1:      'Soulever bassin',
+    descente:   'Descendre ↓',
+    planche:    'Tenir 🦵',
+    planchelat: 'Tenir planche',
+    ballon:     'Étendre lentement',
+  };
+  const holdLabel = {
+    psoas:      'Tenir étirement',
+    planche:    'Changer jambe',
+    planchelat: 'Tenir planche',
+  };
+  const phaseNames={
+    idle:'Prêt',
+    rep: repLabel[ex.id] || 'Mouvement',
+    hold: holdLabel[ex.id] || 'Tenir',
+    'rest-rep':'Pause',
+    'rest-serie':'Repos série',
+    done:'Terminé'
+  };
   const pillClass={idle:'pill-idle',rep:'pill-rep',hold:'pill-hold','rest-rep':'pill-rest','rest-serie':'pill-rest',done:'pill-done'};
   const totalPhases=ex.series*ex.reps;
   const donePhases=(currentSerie-1)*ex.reps+(currentRep-1);
