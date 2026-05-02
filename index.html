@@ -150,10 +150,10 @@ const EXERCISES = [
   },
   {
     id:'ballon', icon:'🏐', name:'Ischio-jambiers excentrique',
-    series:3, reps:15, holdSec:0, repSec:4, restRep:3, restSerie:20,
-    meta:'3 séries · 15 reps · 1 jambe · excentrique',
+    series:3, reps:15, holdSec:3, repSec:2, restRep:0, restSerie:20,
+    meta:'3 séries · 15 reps · 3 sec extension excentrique',
     muscles:'Ischio-jambiers, fessiers, stabilisateurs lombaires',
-    desc:"Sur le dos, talons sur le ballon. Rouler vers les fesses sans résistance. Lever le bassin puis soulever la jambe saine. Étendre le genou de la jambe atteinte pour ramener le ballon lentement."
+    desc:"Sur le dos, talons sur le ballon. Rouler vers les fesses sans résistance. Lever le bassin puis soulever la jambe saine. Étendre le genou de la jambe atteinte lentement (3 sec) pour ramener le ballon."
   },
 ];
 
@@ -249,12 +249,13 @@ function renderTimer(){
     descente:   'Descendre ↓',
     planche:    'Tenir jambe 🦵',
     planchelat: 'Tenir planche',
-    ballon:     'Étendre lentement',
+    ballon:     'Mise en position',
   };
   const holdLabel = {
     psoas:      'Tenir étirement',
     planche:    'Changer jambe →',
     planchelat: 'Tenir planche',
+    ballon:     'Étendre lentement ←',
   };
   const phaseNames={
     idle:'Prêt',
