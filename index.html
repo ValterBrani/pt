@@ -136,8 +136,8 @@ const EXERCISES = [
   },
   {
     id:'planche', icon:'🧱', name:'Planche frontale + extension hanche',
-    series:3, reps:6, holdSec:5, repSec:3, restRep:3, restSerie:20,
-    meta:'2-3 séries · 30 sec · tenir 5 sec par jambe',
+    series:3, reps:6, holdSec:3, repSec:5, restRep:0, restSerie:20,
+    meta:'2-3 séries · 6 levés · tenir 5 sec par jambe',
     muscles:'Transverse, érecteurs, fessiers, stabilisateurs épaule',
     desc:"En position de planche frontale sur les avant-bras. Soulever une jambe vers le haut sans mouvement du tronc, tenir 5 sec. Alterner les deux jambes."
   },
@@ -247,13 +247,13 @@ function renderTimer(){
     cobra:      'Monter ↑',
     pont1:      'Soulever bassin',
     descente:   'Descendre ↓',
-    planche:    'Tenir 🦵',
+    planche:    'Tenir jambe 🦵',
     planchelat: 'Tenir planche',
     ballon:     'Étendre lentement',
   };
   const holdLabel = {
     psoas:      'Tenir étirement',
-    planche:    'Changer jambe',
+    planche:    'Changer jambe →',
     planchelat: 'Tenir planche',
   };
   const phaseNames={
