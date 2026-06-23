@@ -88,7 +88,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Di
 <div class="header">
   <div>
     <h1>Physio Timer</h1>
-    <div class="subtitle">Dérangement L4-5 · 29 avril 2026</div>
+    <div class="subtitle">L4-5 + ischio g · 23 juin 2026</div>
   </div>
   <button class="sound-toggle on" id="soundToggle" onclick="toggleSound()">🔔 Son</button>
 </div>
@@ -128,13 +128,6 @@ const EXERCISES = [
     desc:"Sur le dos, bras croisés, genoux fléchis. Appui sur un seul pied, soulever le bassin en maintenant les cuisses parallèles. Répéter de l'autre côté."
   },
   {
-    id:'descente', icon:'🪜', name:'Descente latérale de marche',
-    series:3, reps:15, holdSec:0, repSec:4, restRep:3, restSerie:20,
-    meta:'2-3 séries · 15 reps · descendre plus bas',
-    muscles:'Quadriceps, fessiers, stabilisateurs genou',
-    desc:"Jambe à renforcer sur la marche près du bord. Fléchir le genou pour descendre le pied libre vers le sol sans y mettre de poids — soulever les orteils au sol. Rotule alignée 2e orteil, talon ne décolle pas."
-  },
-  {
     id:'planche', icon:'🧱', name:'Planche frontale + extension hanche',
     series:3, reps:6, holdSec:3, repSec:5, restRep:0, restSerie:20,
     meta:'2-3 séries · 6 levés · tenir 5 sec par jambe',
@@ -149,11 +142,39 @@ const EXERCISES = [
     desc:"Sur le côté, jambes étendues alignées, coude sous l'épaule. Lever le bassin et maintenir le corps bien droit. Répéter de l'autre côté."
   },
   {
-    id:'ballon', icon:'🏐', name:'Ischio-jambiers excentrique',
+    id:'ballon', icon:'🏐', name:'Ischio-jambiers sur ballon, 1 jambe',
     series:3, reps:15, holdSec:3, repSec:2, restRep:0, restSerie:20,
-    meta:'3 séries · 15 reps · 3 sec extension excentrique',
+    meta:'3 séries · 15 reps · 3x/sem · 3 sec extension excentrique',
     muscles:'Ischio-jambiers, fessiers, stabilisateurs lombaires',
-    desc:"Sur le dos, talons sur le ballon. Rouler vers les fesses sans résistance. Lever le bassin puis soulever la jambe saine. Étendre le genou de la jambe atteinte lentement (3 sec) pour ramener le ballon."
+    desc:"Sur le dos, jambes allongées, chevilles sur le ballon. Soulever le bassin — cuisses et tronc en ligne. Soulever une jambe, rouler le ballon avec l'autre jambe vers les fesses sans changer la hauteur des hanches. Étendre lentement (3 sec) pour ramener le ballon. Progression : soulever les coudes du sol."
+  },
+  {
+    id:'poussee', icon:'🪑', name:'Poussée de hanche',
+    series:3, reps:12, holdSec:0, repSec:3, restRep:2, restSerie:20,
+    meta:'3 séries · 12 reps',
+    muscles:'Grand fessier, ischio-jambiers, quadriceps',
+    desc:"Assis au sol, haut du dos appuyé sur un banc (point de pivot). Pousser les hanches vers le haut en serrant les fessiers jusqu'à ce que les cuisses soient parallèles au tronc, genoux fléchis à 90° au sommet."
+  },
+  {
+    id:'poussee1', icon:'🪑', name:'Poussée de hanche à 1 jambe',
+    series:3, reps:12, holdSec:0, repSec:3, restRep:2, restSerie:20,
+    meta:'3 séries · 12 reps · 2-3x/sem',
+    muscles:'Grand fessier (unilatéral), stabilisateurs bassin',
+    desc:"Assis au sol, haut du dos sur un banc. Soulever un pied du sol, pousser les hanches avec une seule jambe en contractant le fessier. Genou fléchi à 90° au sommet, cuisse parallèle au tronc."
+  },
+  {
+    id:'squat', icon:'🪜', name:'Squat sur chaise (1 jambe)',
+    series:3, reps:12, holdSec:0, repSec:3, restRep:2, restSerie:20,
+    meta:'2-3 séries · 12 reps',
+    muscles:'Quadriceps, fessiers, stabilisateurs genou',
+    desc:"Debout sur une jambe devant une chaise. Amener les hanches en arrière et plier le genou comme pour s'asseoir, jusqu'à toucher la chaise avec les fesses. Revenir lentement debout. Genou aligné avec le 2e orteil."
+  },
+  {
+    id:'slr', icon:'🦵', name:'Mobilité neurale SLR',
+    series:3, reps:10, holdSec:0, repSec:4, restRep:2, restSerie:20,
+    meta:'3 séries · 10 reps · 1x/jour · NE PAS tenir',
+    muscles:'Nerf sciatique — glissement neural',
+    desc:"Sur le dos, tirer le genou de la jambe atteinte vers le ventre avec les deux mains. Étendre lentement la jambe en levant le pied vers le plafond jusqu'au début d'une sensation d'étirement, fesses au sol. Revenir lentement. Mouvement fluide, ne pas tenir la position."
   },
 ];
 
@@ -246,10 +267,13 @@ function renderTimer(){
     psoas:      'Descendre en fente',
     cobra:      'Monter ↑',
     pont1:      'Soulever bassin',
-    descente:   'Descendre ↓',
     planche:    'Tenir jambe 🦵',
     planchelat: 'Tenir planche',
     ballon:     'Mise en position',
+    poussee:    'Pousser hanches ↑',
+    poussee1:   'Pousser hanches ↑',
+    squat:      'Descendre 🪑',
+    slr:        'Étendre la jambe',
   };
   const holdLabel = {
     psoas:      'Tenir étirement',
