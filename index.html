@@ -88,7 +88,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Di
 <div class="header">
   <div>
     <h1>Physio Timer</h1>
-    <div class="subtitle">L4-5 + ischio g · 23 juin 2026</div>
+    <div class="subtitle">L4-5 + ischio g · Juil 2026</div>
   </div>
   <button class="sound-toggle on" id="soundToggle" onclick="toggleSound()">🔔 Son</button>
 </div>
@@ -128,53 +128,53 @@ const EXERCISES = [
     desc:"Sur le dos, bras croisés, genoux fléchis. Appui sur un seul pied, soulever le bassin en maintenant les cuisses parallèles. Répéter de l'autre côté."
   },
   {
-    id:'planche', icon:'🧱', name:'Planche frontale + extension hanche',
-    series:3, reps:6, holdSec:3, repSec:5, restRep:0, restSerie:20,
-    meta:'2-3 séries · 6 levés · tenir 5 sec par jambe',
-    muscles:'Transverse, érecteurs, fessiers, stabilisateurs épaule',
-    desc:"En position de planche frontale sur les avant-bras. Soulever une jambe vers le haut sans mouvement du tronc, tenir 5 sec. Alterner les deux jambes."
-  },
-  {
-    id:'planchelat', icon:'🏋️', name:'Planche latérale',
-    series:3, reps:1, holdSec:30, repSec:3, restRep:5, restSerie:20,
-    meta:'3 séries · tenir 30 sec · chaque côté',
-    muscles:'Obliques, moyen fessier, carré des lombes',
-    desc:"Sur le côté, jambes étendues alignées, coude sous l'épaule. Lever le bassin et maintenir le corps bien droit. Répéter de l'autre côté."
-  },
-  {
-    id:'ballon', icon:'🏐', name:'Ischio-jambiers sur ballon, 1 jambe',
+    id:'ballon', icon:'🏐', name:'Ischio-jambiers sur rouleau, 1 jambe',
     series:3, reps:15, holdSec:3, repSec:2, restRep:0, restSerie:20,
-    meta:'3 séries · 15 reps · 3x/sem · 3 sec extension excentrique',
+    meta:'3 séries · 15 reps · 3x/sem',
     muscles:'Ischio-jambiers, fessiers, stabilisateurs lombaires',
-    desc:"Sur le dos, jambes allongées, chevilles sur le ballon. Soulever le bassin — cuisses et tronc en ligne. Soulever une jambe, rouler le ballon avec l'autre jambe vers les fesses sans changer la hauteur des hanches. Étendre lentement (3 sec) pour ramener le ballon. Progression : soulever les coudes du sol."
+    desc:"Sur le dos, jambes allongées, chevilles sur le ballon. Soulever le bassin. Lever une jambe, rouler le ballon avec l'autre jambe vers les fesses sans changer la hauteur des hanches. Revenir en dépliant le genou. Progression : soulever les coudes du sol."
   },
   {
-    id:'poussee', icon:'🪑', name:'Poussée de hanche',
-    series:3, reps:12, holdSec:0, repSec:3, restRep:2, restSerie:20,
+    id:'deadlift', icon:'🦅', name:'Deadlift roumain unipodal',
+    series:3, reps:12, holdSec:0, repSec:3, restRep:3, restSerie:20,
     meta:'3 séries · 12 reps',
-    muscles:'Grand fessier, ischio-jambiers, quadriceps',
-    desc:"Assis au sol, haut du dos appuyé sur un banc (point de pivot). Pousser les hanches vers le haut en serrant les fessiers jusqu'à ce que les cuisses soient parallèles au tronc, genoux fléchis à 90° au sommet."
+    muscles:'Ischio-jambiers proximaux, grand fessier, stabilisateurs lombaires',
+    desc:"Sur une jambe, incliner vers l'avant en pivotant sur la hanche en appui, tout en maintenant le tronc droit. Jambe libre s'étend vers l'arrière. Revenir à la position debout."
   },
   {
-    id:'poussee1', icon:'🪑', name:'Poussée de hanche à 1 jambe',
-    series:3, reps:12, holdSec:0, repSec:3, restRep:2, restSerie:20,
-    meta:'3 séries · 12 reps · 2-3x/sem',
-    muscles:'Grand fessier (unilatéral), stabilisateurs bassin',
-    desc:"Assis au sol, haut du dos sur un banc. Soulever un pied du sol, pousser les hanches avec une seule jambe en contractant le fessier. Genou fléchi à 90° au sommet, cuisse parallèle au tronc."
+    id:'deadliftpoids', icon:'🏋️', name:'Deadlift roumain 1 jambe avec poids',
+    series:3, reps:12, holdSec:0, repSec:3, restRep:3, restSerie:20,
+    meta:'2-3 séries · 8-12 reps · progression',
+    muscles:'Ischio-jambiers proximaux, grand fessier, stabilisateurs lombaires',
+    desc:"En appui sur une jambe, fléchir à la hanche en maintenant le dos droit. Le poids (kettlebell ou poids) tenu dans la main du côté opposé ou dans les deux mains."
   },
   {
-    id:'squat', icon:'🪜', name:'Squat sur chaise (1 jambe)',
+    id:'squat', icon:'🪑', name:'Squat sur chaise (1 jambe)',
     series:3, reps:12, holdSec:0, repSec:3, restRep:2, restSerie:20,
     meta:'2-3 séries · 12 reps',
     muscles:'Quadriceps, fessiers, stabilisateurs genou',
     desc:"Debout sur une jambe devant une chaise. Amener les hanches en arrière et plier le genou comme pour s'asseoir, jusqu'à toucher la chaise avec les fesses. Revenir lentement debout. Genou aligné avec le 2e orteil."
   },
   {
+    id:'planchelat', icon:'🏋️', name:'Planche latérale + flexion hanche',
+    series:3, reps:1, holdSec:30, repSec:3, restRep:5, restSerie:20,
+    meta:'3 séries · 30 sec · bande élastique aux cuisses',
+    muscles:'Obliques, moyen fessier, fléchisseurs hanche',
+    desc:"En position de planche latérale, lever le genou vers l'épaule du même côté sans rotation au niveau du bassin. Bande élastique aux cuisses. Répéter de l'autre côté."
+  },
+  {
+    id:'plancheabd', icon:'🧱', name:'Planche avec abduction',
+    series:1, reps:4, holdSec:30, repSec:3, restRep:5, restSerie:0,
+    meta:'4 reps · tenir 15→30 sec · bande élastique aux chevilles',
+    muscles:'Transverse, érecteurs, moyen fessier, stabilisateurs épaule',
+    desc:"Sur les avant-bras, pieds ensemble, bassin soulevé en ligne droite sans arquer le dos. Lever une jambe et l'écarter lentement. Ramener la jambe vers le milieu sans toucher le sol et répéter. Bande élastique aux chevilles pour progresser."
+  },
+  {
     id:'slr', icon:'🦵', name:'Mobilité neurale SLR',
     series:3, reps:10, holdSec:0, repSec:4, restRep:2, restSerie:20,
     meta:'3 séries · 10 reps · 1x/jour · NE PAS tenir',
     muscles:'Nerf sciatique — glissement neural',
-    desc:"Sur le dos, tirer le genou de la jambe atteinte vers le ventre avec les deux mains. Étendre lentement la jambe en levant le pied vers le plafond jusqu'au début d'une sensation d'étirement, fesses au sol. Revenir lentement. Mouvement fluide, ne pas tenir la position."
+    desc:"Sur le dos, tirer le genou de la jambe atteinte vers le ventre avec les deux mains. Étendre lentement la jambe en levant le pied vers le plafond jusqu'au début d'une sensation d'étirement, fesses au sol. Revenir lentement. Mouvement fluide, ne PAS tenir."
   },
 ];
 
@@ -264,22 +264,22 @@ function renderTimer(){
   if(!currentEx){wrap.innerHTML=`<div class="no-ex"><div class="big">⏱️</div>Sélectionne un exercice<br>dans l'onglet Exercices</div>`;return;}
   const ex=currentEx;
   const repLabel = {
-    psoas:      'Descendre en fente',
-    cobra:      'Monter ↑',
-    pont1:      'Soulever bassin',
-    planche:    'Tenir jambe 🦵',
-    planchelat: 'Tenir planche',
-    ballon:     'Mise en position',
-    poussee:    'Pousser hanches ↑',
-    poussee1:   'Pousser hanches ↑',
-    squat:      'Descendre 🪑',
-    slr:        'Étendre la jambe',
+    psoas:         'Descendre en fente',
+    cobra:         'Monter ↑',
+    pont1:         'Soulever bassin',
+    ballon:        'Mise en position',
+    deadlift:      'Incliner avant ↘',
+    deadliftpoids: 'Incliner avant ↘',
+    squat:         'Descendre 🪑',
+    planchelat:    'Tenir planche',
+    plancheabd:    'Tenir + écarter jambe',
+    slr:           'Étendre la jambe',
   };
   const holdLabel = {
-    psoas:      'Tenir étirement',
-    planche:    'Changer jambe →',
-    planchelat: 'Tenir planche',
-    ballon:     'Étendre lentement ←',
+    psoas:         'Tenir étirement',
+    ballon:        'Étendre lentement ←',
+    planchelat:    'Tenir planche',
+    plancheabd:    'Tenir position',
   };
   const phaseNames={
     idle:'Prêt',
