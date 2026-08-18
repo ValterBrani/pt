@@ -157,15 +157,15 @@ const EXERCISES = [
   },
   {
     id:'planchelat', icon:'🏋️', name:'Planche latérale + flexion hanche',
-    series:3, reps:1, holdSec:30, repSec:3, restRep:5, restSerie:20,
+    series:3, reps:1, holdSec:0, repSec:30, restRep:0, restSerie:20,
     meta:'3 séries · 30 sec · bande élastique aux cuisses',
     muscles:'Obliques, moyen fessier, fléchisseurs hanche',
     desc:"En position de planche latérale, lever le genou vers l'épaule du même côté sans rotation au niveau du bassin. Bande élastique aux cuisses. Répéter de l'autre côté."
   },
   {
     id:'plancheabd', icon:'🧱', name:'Planche avec abduction',
-    series:1, reps:4, holdSec:30, repSec:3, restRep:5, restSerie:0,
-    meta:'4 reps · tenir 15→30 sec · bande élastique aux chevilles',
+    series:1, reps:4, holdSec:0, repSec:30, restRep:10, restSerie:0,
+    meta:'4 reps · 30 sec · bande élastique aux chevilles',
     muscles:'Transverse, érecteurs, moyen fessier, stabilisateurs épaule',
     desc:"Sur les avant-bras, pieds ensemble, bassin soulevé en ligne droite sans arquer le dos. Lever une jambe et l'écarter lentement. Ramener la jambe vers le milieu sans toucher le sol et répéter. Bande élastique aux chevilles pour progresser."
   },
@@ -271,14 +271,13 @@ function renderTimer(){
     deadlift:      'Incliner avant ↘',
     deadliftpoids: 'Incliner avant ↘',
     squat:         'Descendre 🪑',
-    planchelat:    'Tenir planche',
-    plancheabd:    'Tenir + écarter jambe',
+    planchelat:    'Genou → épaule 🔄',
+    plancheabd:    'Lever + écarter jambe 🔄',
     slr:           'Étendre la jambe',
   };
   const holdLabel = {
     psoas:         'Tenir étirement',
     ballon:        'Étendre lentement ←',
-    planchelat:    'Tenir planche',
     plancheabd:    'Tenir position',
   };
   const phaseNames={
