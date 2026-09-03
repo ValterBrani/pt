@@ -88,7 +88,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Di
 <div class="header">
   <div>
     <h1>Physio Timer</h1>
-    <div class="subtitle">L4-5 + ischio g · Juil 2026</div>
+    <div class="subtitle">L4-5 + ischio g · 2 sept 2026</div>
   </div>
   <button class="sound-toggle on" id="soundToggle" onclick="toggleSound()">🔔 Son</button>
 </div>
@@ -128,25 +128,11 @@ const EXERCISES = [
     desc:"Sur le dos, bras croisés, genoux fléchis. Appui sur un seul pied, soulever le bassin en maintenant les cuisses parallèles. Répéter de l'autre côté."
   },
   {
-    id:'ballon', icon:'🏐', name:'Ischio-jambiers sur rouleau, 1 jambe',
-    series:3, reps:15, holdSec:3, repSec:2, restRep:0, restSerie:20,
-    meta:'3 séries · 15 reps · 3x/sem',
-    muscles:'Ischio-jambiers, fessiers, stabilisateurs lombaires',
-    desc:"Sur le dos, jambes allongées, chevilles sur le ballon. Soulever le bassin. Lever une jambe, rouler le ballon avec l'autre jambe vers les fesses sans changer la hauteur des hanches. Revenir en dépliant le genou. Progression : soulever les coudes du sol."
-  },
-  {
-    id:'deadlift', icon:'🦅', name:'Deadlift roumain unipodal',
-    series:3, reps:12, holdSec:0, repSec:3, restRep:3, restSerie:20,
-    meta:'3 séries · 12 reps',
-    muscles:'Ischio-jambiers proximaux, grand fessier, stabilisateurs lombaires',
-    desc:"Sur une jambe, incliner vers l'avant en pivotant sur la hanche en appui, tout en maintenant le tronc droit. Jambe libre s'étend vers l'arrière. Revenir à la position debout."
-  },
-  {
     id:'deadliftpoids', icon:'🏋️', name:'Deadlift roumain 1 jambe avec poids',
     series:3, reps:12, holdSec:0, repSec:3, restRep:3, restSerie:20,
-    meta:'2-3 séries · 8-12 reps · progression',
+    meta:'2-3 séries · 12 reps · poids main opposée',
     muscles:'Ischio-jambiers proximaux, grand fessier, stabilisateurs lombaires',
-    desc:"En appui sur une jambe, fléchir à la hanche en maintenant le dos droit. Le poids (kettlebell ou poids) tenu dans la main du côté opposé ou dans les deux mains."
+    desc:"En appui sur une jambe, fléchir à la hanche en maintenant le dos droit. Poids (kettlebell) tenu dans la main du côté opposé à la jambe d'appui, ou dans les deux mains."
   },
   {
     id:'squat', icon:'🪑', name:'Squat sur chaise (1 jambe)',
@@ -156,18 +142,25 @@ const EXERCISES = [
     desc:"Debout sur une jambe devant une chaise. Amener les hanches en arrière et plier le genou comme pour s'asseoir, jusqu'à toucher la chaise avec les fesses. Revenir lentement debout. Genou aligné avec le 2e orteil."
   },
   {
-    id:'planchelat', icon:'🏋️', name:'Planche latérale + flexion hanche',
-    series:3, reps:1, holdSec:0, repSec:30, restRep:0, restSerie:20,
-    meta:'3 séries · 30 sec · bande élastique aux cuisses',
-    muscles:'Obliques, moyen fessier, fléchisseurs hanche',
-    desc:"En position de planche latérale, lever le genou vers l'épaule du même côté sans rotation au niveau du bassin. Bande élastique aux cuisses. Répéter de l'autre côté."
+    id:'pontlatabd', icon:'🦵', name:'Pont latéral + abduction hanche',
+    series:3, reps:15, holdSec:0, repSec:3, restRep:2, restSerie:20,
+    meta:'2-3 séries · 15 reps · bande élastique aux cuisses',
+    muscles:'Moyen fessier, obliques, stabilisateurs bassin',
+    desc:"Sur le côté, genoux pliés à 90°, jambes en ligne avec le corps, coude sous l'épaule. Lever le bassin du sol et étendre la jambe du dessus. Lever la jambe aussi haut que possible. Bande élastique aux cuisses."
   },
   {
-    id:'plancheabd', icon:'🧱', name:'Planche avec abduction',
-    series:1, reps:4, holdSec:0, repSec:30, restRep:10, restSerie:0,
-    meta:'4 reps · 30 sec · bande élastique aux chevilles',
-    muscles:'Transverse, érecteurs, moyen fessier, stabilisateurs épaule',
-    desc:"Sur les avant-bras, pieds ensemble, bassin soulevé en ligne droite sans arquer le dos. Lever une jambe et l'écarter lentement. Ramener la jambe vers le milieu sans toucher le sol et répéter. Bande élastique aux chevilles pour progresser."
+    id:'plancheballon', icon:'🏐', name:'Planche, pied sur ballon',
+    series:1, reps:3, holdSec:30, repSec:3, restRep:10, restSerie:0,
+    meta:'3 reps · tenir 10→30 sec',
+    muscles:'Transverse, érecteurs, stabilisateurs épaule, plancher pelvien',
+    desc:"Planche sur les mains ou avant-bras, chevilles ou tibias sur le ballon. Dos droit, menton rentré. Activer abdominaux inférieurs (nombril vers intérieur) et plancher pelvien. Respiration constante par le ventre."
+  },
+  {
+    id:'flexiongenou', icon:'🦿', name:'Flexion genou élastique',
+    series:3, reps:8, holdSec:0, repSec:3, restRep:2, restSerie:20,
+    meta:'3 séries · 8 reps · élastique à la cheville',
+    muscles:'Ischio-jambiers (concentrique et excentrique), biceps fémoral',
+    desc:"Assis bien droit sur une chaise, élastique attaché à la cheville de la jambe affectée et à un objet solide devant. Plier le genou en tirant l'élastique sous la chaise sans bouger la cuisse. Revenir lentement à la position initiale."
   },
   {
     id:'slr', icon:'🦵', name:'Mobilité neurale SLR',
@@ -264,21 +257,19 @@ function renderTimer(){
   if(!currentEx){wrap.innerHTML=`<div class="no-ex"><div class="big">⏱️</div>Sélectionne un exercice<br>dans l'onglet Exercices</div>`;return;}
   const ex=currentEx;
   const repLabel = {
-    psoas:         'Descendre en fente',
-    cobra:         'Monter ↑',
-    pont1:         'Soulever bassin',
-    ballon:        'Mise en position',
-    deadlift:      'Incliner avant ↘',
-    deadliftpoids: 'Incliner avant ↘',
-    squat:         'Descendre 🪑',
-    planchelat:    'Genou → épaule 🔄',
-    plancheabd:    'Lever + écarter jambe 🔄',
-    slr:           'Étendre la jambe',
+    psoas:        'Descendre en fente',
+    cobra:        'Monter ↑',
+    pont1:        'Soulever bassin',
+    deadliftpoids:'Incliner avant ↘',
+    squat:        'Descendre 🪑',
+    pontlatabd:   'Lever jambe ↑',
+    plancheballon:'Tenir planche',
+    flexiongenou: 'Plier le genou',
+    slr:          'Étendre la jambe',
   };
   const holdLabel = {
-    psoas:         'Tenir étirement',
-    ballon:        'Étendre lentement ←',
-    plancheabd:    'Tenir position',
+    psoas:        'Tenir étirement',
+    plancheballon:'Tenir position',
   };
   const phaseNames={
     idle:'Prêt',
